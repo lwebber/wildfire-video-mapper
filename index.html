@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wildfire Video Mapper</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Wildfire Video Mapper</h1>
+    </header>
+
+    <section id="search">
+        <form action="#" method="post" id="js-form">
+            <select data-placeholder="Begin typing a search term to filter..." class="chosen-select" id="select" name="search" multiple>
+                        <option value="kincade">kincade</option>
+                        <option value="kincadefire">kincade fire</option>
+                        <option value="tubbsfire">tubbsfire footage</option>
+                        <option value="paradisefire">paradisefire footage</option>
+                        <option value="calfire">cal fire</option>
+                        <option value="pg&e power shut off">pg&e power shut off</option>
+                        <option value="kincade fire footage">kincade fire footage</option>
+                        <option value="paradise fire footage">paradise fire footage</option>
+                        <option value="kincade fire live">kincade fire live</option>
+                        <option value="paradise fire live">paradise fire live</option>
+                        <option value="pg&e power outage">pg&e power outage</option>
+                        <option value="pge kincade">pge kincade</option>
+                        <option value="pge paradise">pge paradise</option>
+                        <option value="camp fire paradise">camp fire paradise</option>
+                        <option value="tubbs fire">tubbs fire</option>
+                        <option value="calfire kincade update">calfire kincade update</option>
+                        <option value="calfire tubbs update">calfire tubbs update</option>
+                        <option value="butte county fire">butte county fire</option>
+                        <option value="sonoma county fire">sonoma county fire</option>
+                        <option value="pge camp">pge camp</option>
+                        <option value="pacific gas and electric company fire">pacific gas and electric company fire</option>
+                        <option value="pge fire">pge fire</option>
+                        <option value="pge tubbs">pge tubbs</option>
+                      </select>
+            <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+            <label for="max">Max results?</label>
+            <input type="text" name="max" id="max" value="15" placeholder="15"></input>
+            <input type="submit">
+        </form>
+        <p id="js-error-message" class="error-message"></p>
+
+        <section id="map-container">
+            <h2>Map</h2>
+            <div id="mapid"></div>
+        </section>
+
+        <section id="results">
+            <h2>Search results</h2>
+            <ul id="results-list">
+            </ul>
+        </section>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.proto.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.proto.min.js"></script>
+        <script src="index.js"></script>
+</body>
+
+</html>
