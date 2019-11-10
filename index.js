@@ -91,7 +91,7 @@ async function buildVideoArray(resp_json) {
     await addLat(videos);
     await addLong(videos);
     await addEmbedHtml(videos);
-    await displayVideos(videos);
+    displayVideos(videos);
 }
 
 async function fetchLat(video_id) {
