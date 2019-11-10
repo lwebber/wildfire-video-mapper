@@ -194,5 +194,4 @@ function mapVideos(videos) {
     }
 }
 
-
 $(start);
