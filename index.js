@@ -172,6 +172,15 @@ async function addEmbedHtml(videos) {
     }
 }
 
+function displayVideos(videos) {
+    console.log(videos);
+    $('#results-list').empty();
+    for (let i = 0; i < videos.length; i++) {
+        $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
+    }
+    mapVideos(videos);
+}
+
 function mapVideos(videos) {
     console.log('mapVideos ran');
     let myIcon = L.icon({
@@ -184,16 +193,6 @@ function mapVideos(videos) {
         firemarker.addTo(myMap);
     }
 }
-
-function displayVideos(videos) {
-    console.log(videos);
-    $('#results-list').empty();
-    for (let i = 0; i < videos.length; i++) {
-        $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
-    }
-    mapVideos(videos);
-}
-
 
 
 $(start);
