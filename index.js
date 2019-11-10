@@ -20,16 +20,18 @@ function paintMap() {
         accessToken: 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJjazI3dWs2dTEwdHFxM2lxaGJndjRpdzZiIn0.rlFiPrSydlJ-HY3K4cdTgw'
     }).addTo(myMap);
 
+    /*find user's location and put them on the map*/
     myMap.locate({ setView: true, maxZoom: 7 });
     myMap.on('locationfound', onLocationFound);
-
-    let fireIcon = L.icon({
-        iconUrl: 'favicon.ico',
-    });
 
     function onLocationFound(e) {
         L.marker(e.latlng).addTo(myMap).bindPopup(`<h1>You are here</h1>`);
     }
+
+    /*pre-load map with one Kincade Fire marker & video*/
+    let fireIcon = L.icon({
+        iconUrl: 'favicon.ico',
+    });
 
     let firemarker = L.marker([38.792458, -122.780053], { icon: fireIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/Nz0YQOIktk4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
     firemarker.addTo(myMap);
@@ -58,6 +60,8 @@ async function fetchVideos(search_terms, max = 3) {
         maxResults: max,
         part: "snippet",
         type: 'video',
+        /*find youtube videos within a 300mi radius of the Kincade Fire
+        will return only videos that actually have a lat and long*/
         location: '38.792458, -122.780053',
         locationRadius: '300mi'
     }
@@ -67,6 +71,7 @@ async function fetchVideos(search_terms, max = 3) {
     try {
         const resp = await fetch(url);
         let resp_json = await resp.json();
+        /*take the response and use it to build an array of video objects*/
         buildVideoArray(resp_json);
     } catch {
         throw new Error(response.statusText);
@@ -82,15 +87,18 @@ function formatQueryParams(params) {
 async function buildVideoArray(resp_json) {
     let video_items = resp_json.items;
     video_items.forEach(function(element) {
-        //make a new object with videoId as first property
+        /*make a new object with videoId as first property*/
         let video = {
             videoId: `${element.id.videoId}`
         };
+        /*push onto the videos array*/
         videos.push(video)
     });
+    /*add more properties to each video object in the videos array*/
     await addLat(videos);
     await addLong(videos);
     await addEmbedHtml(videos);
+    /*display and map the videos*/
     displayVideos(videos);
 }
 
@@ -173,7 +181,6 @@ async function addEmbedHtml(videos) {
 }
 
 function displayVideos(videos) {
-    console.log(videos);
     $('#results-list').empty();
     for (let i = 0; i < videos.length; i++) {
         $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
@@ -182,7 +189,6 @@ function displayVideos(videos) {
 }
 
 function mapVideos(videos) {
-    console.log('mapVideos ran');
     let myIcon = L.icon({
         iconUrl: 'favicon.ico',
     });
