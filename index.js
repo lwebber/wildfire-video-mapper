@@ -45,15 +45,12 @@ function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         let search_terms = $('#select').val().join(',');
-        console.log(search_terms);
         let max = $('#max').val();
-        console.log(max);
         fetchVideos(search_terms, max);
     });
 }
 
 async function fetchVideos(search_terms, max = 3) {
-
     const params = {
         key: apiKey,
         q: search_terms,
@@ -67,7 +64,6 @@ async function fetchVideos(search_terms, max = 3) {
     }
     const queryString = formatQueryParams(params)
     const url = searchURL + '?' + queryString;
-
     try {
         const resp = await fetch(url);
         let resp_json = await resp.json();
