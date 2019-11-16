@@ -8,7 +8,7 @@ let videos = [];
 
 
 function start() {
-    swal("Oops!", "Something went wrong on the page!", "error");
+    swal("Wildfire Video Mapper", "7 of the 10 most destructive fires in California history have happened since 2015. Use this tool to search for wildfire footage mapped to the location in which it was shot. Click a fire icon to see the footage. Warning: Some of it is harrowing.", "warning");
     paintMap();
     watchForm();
 }
@@ -22,12 +22,12 @@ function paintMap() {
     }).addTo(myMap);
 
     /*find user's location and put them on the map*/
-    myMap.locate({ setView: true, maxZoom: 7 });
+    /* myMap.locate({ setView: true, maxZoom: 7 });
     myMap.on('locationfound', onLocationFound);
 
     function onLocationFound(e) {
         L.marker(e.latlng).addTo(myMap).bindPopup(`<h1>You are here</h1>`);
-    }
+    } */
 
     /*pre-load map with one Kincade Fire marker & video*/
     let fireIcon = L.icon({
