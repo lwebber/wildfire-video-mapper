@@ -8,6 +8,7 @@ let videos = [];
 
 
 function start() {
+    swal("Oops!", "Something went wrong on the page!", "error");
     paintMap();
     watchForm();
 }
