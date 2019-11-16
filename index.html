@@ -8,6 +8,7 @@
     <title>Wildfire Video Mapper</title>
     <link rel="icon" href="favicon.ico" type="image/ico">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
@@ -51,7 +52,11 @@
             <label for="max">Max results?</label>
             <input type="text" name="max" id="max" value="15" placeholder="15"></input>
             <input type="submit">
+            <div id="myBar" class="w3-green" style="height:24px;width:0">
+                Loading......
+            </div>
         </form>
+
         <p id="js-error-message" class="error-message"></p>
 
         <section id="map-container">

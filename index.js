@@ -47,7 +47,23 @@ function watchForm() {
         let search_terms = $('#select').val().join(',');
         let max = $('#max').val();
         fetchVideos(search_terms, max);
+        updateProgress();
     });
+}
+
+function updateProgress() {
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 100);
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
 }
 
 async function fetchVideos(search_terms, max = 3) {
