@@ -251,13 +251,17 @@ a svg {
 
 @media (min-width: 768px) and (max-width: 1024px) {}
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
-
-@media (min-width: 481px) and (max-width: 767px) {}
-
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 767px) {
+    .leaflet-popup-content {
+        width: 245px !important;
+        height: 140px !important;
+    }
     iframe {
         width: 240px !important;
         height: 135px !important;
+    }
+    h1 {
+        font-size: 18px !important;
+        padding-top: 1em;
     }
 }
