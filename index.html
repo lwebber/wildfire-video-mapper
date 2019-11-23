@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="sideNavigation" class="sidenav">
+    <nav id="sideNavigation" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <form action="#" method="post" id="js-form">
             <select data-placeholder="Begin typing a search term to filter..." class="chosen-select" id="select" name="search" multiple>
@@ -41,13 +41,13 @@
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
             <label for="max">Max results?</label>
             <input type="text" name="max" id="max" value="15" placeholder="15"></input>
-            <input class="button1" type="submit">
+            <input class="button1" type="submit"></input>
         </form>
         <div id="myBar-container">
             <div id="myBar" class="w3-green" style="height:24px;width:0">Loading...</div>
         </div>
-
-    </div>
+        <p id="js-error-message" class="error-message"></p>
+    </nav>
 
     <nav class="topnav">
         <a href="#" onclick="openNav()">
@@ -62,11 +62,9 @@
         </header>
     </nav>
 
-    <p id="js-error-message" class="error-message"></p>
-
-    <div id="map-container">
+    <main id="map-container">
         <div id="mapid"></div>
-    </div>
+    </main>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
