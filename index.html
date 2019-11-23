@@ -16,7 +16,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet">
 </head>
 
+<header>
+    <nav class="topnav">
+        <a href="#" onclick="openNav()">
+            <svg width="30" height="30" id="icoOpen">
+                        <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+                    </svg>
+        </a>
+        <h1>California Wildfire Video Mapper</h1>
+
+    </nav>
+</header>
+
 <body>
+
     <nav id="sideNavigation" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <form action="#" method="post" id="js-form">
@@ -37,7 +52,7 @@
                         <option value="calfire tubbs update">calfire tubbs update</option>
                         <option value="butte county fire">butte county fire</option>
                         <option value="sonoma county fire">sonoma county fire</option>
-                      </select>
+                </select>
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
             <label for="max">Max results?</label>
             <input type="text" name="max" id="max" value="15" placeholder="15"></input>
@@ -49,18 +64,7 @@
         <p id="js-error-message" class="error-message"></p>
     </nav>
 
-    <nav class="topnav">
-        <a href="#" onclick="openNav()">
-            <svg width="30" height="30" id="icoOpen">
-                      <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-                      <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-                      <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
-            </svg>
-        </a>
-        <header>
-            <h1>California Wildfire Video Mapper</h1>
-        </header>
-    </nav>
+
 
     <main id="map-container">
         <div id="mapid"></div>
