@@ -11,6 +11,7 @@ function start() {
     swal("Wildfire Video Mapper", "7 of the 10 most destructive fires in California history have happened since 2015. Use this tool to search for wildfire footage mapped to the location in which it was shot. Click a fire icon to see the footage. Warning: Some of it is harrowing.", "warning");
     paintMap();
     watchForm();
+    $('#myBar').hide();
 }
 
 function paintMap() {
@@ -40,18 +41,21 @@ function watchForm() {
         let search_terms = $('#select').val().join(',');
         let max = $('#max').val();
         fetchVideos(search_terms, max);
+        $('#myBar').show();
+        $('#myBar').text('Loading....');
         updateProgress();
     });
 }
 
 function updateProgress() {
-    let elem = document.getElementById("myBar");
+    let elem = document.getElementById('myBar');
     let width = 1;
     let id = setInterval(frame, 100);
 
     function frame() {
         if (width >= 100) {
             clearInterval(id);
+            $('#myBar').text('Ready');
         } else {
             width++;
             elem.style.width = width + '%';
@@ -193,7 +197,6 @@ function displayVideos(videos) {
     mapVideos(videos);
 }
 
-/*should I switch to for each loop? Here and elsewhere?*/
 function mapVideos(videos) {
     let myIcon = L.icon({
         iconUrl: 'fireicon.ico',
@@ -204,6 +207,7 @@ function mapVideos(videos) {
         let firemarker = L.marker([lat, long], { icon: myIcon }).bindPopup(`${videos[i].embed_html}`);
         firemarker.addTo(myMap);
     }
+    myMap.setZoom(9);
 }
 
 $(start);

@@ -3,6 +3,9 @@
     font-family: 'Nunito', sans-serif;
 }
 
+
+/* the main area */
+
 body {
     color: white;
     background-color: #111;
@@ -25,9 +28,9 @@ button:hover {
     cursor: pointer;
 }
 
-.container,
 header,
 form,
+.container,
 .error-message {
     margin: 0 auto;
     max-width: 90%;
@@ -43,6 +46,9 @@ form,
     display: none;
 }
 
+
+/* the map */
+
 #mapid,
 #map-container {
     height: 500px;
@@ -52,17 +58,40 @@ form,
     z-index: 0;
 }
 
+
+/*change these w/media queries to fit smaller screens*/
+
 .leaflet-popup-content,
 iframe {
     width: 480px !important;
     height: 270px !important;
 }
 
+
+/* side search menu slider */
+
+.sidenav {
+    height: 100%;
+    /*change width with js*/
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+
+/*submit search button */
+
 .button1 {
     display: inline-block;
     padding: 0.35em 1.2em;
     border: 0.1em solid #FFFFFF;
-    margin: 0.5em 0.3em 0.3em 0;
+    margin: 1em 0.3em 0.3em 0px;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
@@ -79,36 +108,15 @@ iframe {
     color: black;
 }
 
+
+/*the top right arrow for each search choice*/
+
 .search-choice-close {
     padding: 0 0 0 0 !important;
 }
 
 
-/* The side navigation menu */
-
-.sidenav {
-    height: 100%;
-    /* 100% Full-height */
-    width: 0;
-    /* 0 width - change this with JavaScript */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111;
-    /* Black*/
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 60px;
-    /* Place content 60px from the top */
-    transition: 0.5s;
-    /* 0.5 second transition effect to slide in the sidenav */
-}
-
-
-/* The navigation menu links */
+/* The side search menu links */
 
 .sidenav a {
     padding: 8px 8px 8px 32px;
@@ -119,16 +127,25 @@ iframe {
     transition: 0.3s
 }
 
-
-/* When you mouse over the navigation links, change their color */
-
 .sidenav a:hover,
 .offcanvas a:focus {
     color: #f1f1f1;
 }
 
 
-/* Position and style the close button (top right corner) */
+/*the progress bar*/
+
+#myBar-container,
+#myBar {
+    width: 95%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+
+/* the close button in the top right corner) */
 
 .sidenav .closebtn {
     position: absolute;
@@ -139,15 +156,12 @@ iframe {
 }
 
 
-/* Add a black background color to the top navigation */
+/* top navigation */
 
 .topnav {
     background-color: #111;
     overflow: hidden;
 }
-
-
-/*nav search slider */
 
 .topnav a {
     float: left;
@@ -216,16 +230,6 @@ a svg {
 
 /* media queries */
 
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-
-@media all and (max-width:30em) {
-    .button1 {
-        display: block;
-        margin: 0.4em auto;
-    }
-}
-
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
@@ -247,10 +251,6 @@ a svg {
     }
 }
 
-@media (min-width: 1025px) and (max-width: 1280px) {}
-
-@media (min-width: 768px) and (max-width: 1024px) {}
-
 @media (min-width: 320px) and (max-width: 767px) {
     .leaflet-popup-content {
         width: 245px !important;
@@ -263,5 +263,9 @@ a svg {
     h1 {
         font-size: 18px !important;
         padding-top: 1em;
+    }
+    .button1 {
+        display: block;
+        margin: 0.4em auto;
     }
 }
