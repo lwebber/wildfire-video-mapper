@@ -21,14 +21,6 @@ function paintMap() {
         accessToken: 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJjazI3dWs2dTEwdHFxM2lxaGJndjRpdzZiIn0.rlFiPrSydlJ-HY3K4cdTgw'
     }).addTo(myMap);
 
-    /*find user's location and put them on the map*/
-    /* myMap.locate({ setView: true, maxZoom: 7 });
-    myMap.on('locationfound', onLocationFound);
-
-    function onLocationFound(e) {
-        L.marker(e.latlng).addTo(myMap).bindPopup(`<h1>You are here</h1>`);
-    } */
-
     /*pre-load map with one Kincade Fire marker & video*/
     let fireIcon = L.icon({
         iconUrl: 'fireicon.ico',
