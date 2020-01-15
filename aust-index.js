@@ -1,14 +1,14 @@
 'use strict';
 
 const myMap = L.map('mapid').setView([38.792458, -122.780053], 7);
-const apiKey = "AIzaSyCZfD8CLRAVwxJXoLOKwM_hIFFEok4EVeE";
+const apiKey = "AIzaSyDO1s4feAKvoD59SHzKZk30gLG6mRZYVT4";
 const searchURL = `https://www.googleapis.com/youtube/v3/search`;
 const videoURL = 'https://www.googleapis.com/youtube/v3/videos';
 let videos = [];
 
 
 function start() {
-    swal("Wildfire Video Mapper", "In November 2019, the Australian continent experienced widespread outbreaks of unprecedented, destructive wildfires. Use this tool to search for wildfire footage mapped to the location in which it was shot. Click a fire icon to see the footage. Warning: Some of it is harrowing.", "warning");
+    swal("Bushfire Video Mapper", "In the summer of 2019-2020, the Australian continent experienced widespread outbreaks of unprecedented, destructive wildfires. Use this tool to search for wildfire footage mapped to the location in which it was shot. Click a fire icon to see the footage. Warning: Some of it is harrowing.", "warning");
     paintMap();
     watchForm();
 }
