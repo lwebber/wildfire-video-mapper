@@ -113,7 +113,7 @@ async function buildVideoArray(resp_json) {
     displayVideos(videos);
 }
 
-/* async function fetchLat(video_id) {
+async function fetchLat(video_id) {
     const params = {
         part: "recordingDetails",
         key: apiKey,
@@ -133,7 +133,7 @@ async function buildVideoArray(resp_json) {
     }
 
 }
- */
+
 async function fetchLocation(video_id) {
     const params = {
         part: "recordingDetails,player",
