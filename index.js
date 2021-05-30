@@ -1,7 +1,7 @@
 'use strict';
 
 const myMap = L.map('mapid').setView([38.792458, -122.780053], 7);
-const apiKey = process.env.API_KEY;
+const apiKey = 'AIzaSyDO1s4feAKvoD59SHzKZk30gLG6mRZYVT4';
 const searchURL = 'https://www.googleapis.com/youtube/v3/search';
 const videoURL = 'https://www.googleapis.com/youtube/v3/videos';
 let videos = [];
