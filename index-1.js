@@ -2,7 +2,8 @@
 
 const myMap = L.map('mapid').setView([38.792458, -122.780053], 7);
 const apiKey = "AIzaSyDO1s4feAKvoD59SHzKZk30gLG6mRZYVT4";
-const searchURL = `https://www.googleapis.com/youtube/v3/search`;
+const accessToken = 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJja29tMXF6aXowM2hkMnVwbDM3ano1MWowIn0.pgOwNUc7CwQNmO6eoi4PcQ';
+const searchURL = 'https://www.googleapis.com/youtube/v3/search';
 const videoURL = 'https://www.googleapis.com/youtube/v3/videos';
 let videos = [];
 
@@ -15,11 +16,11 @@ function start() {
 }
 
 function paintMap() {
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    L.tileLayer(`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${accessToken}`, {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJjazI3dWs2dTEwdHFxM2lxaGJndjRpdzZiIn0.rlFiPrSydlJ-HY3K4cdTgw'
+        accessToken: `${accessToken}`
     }).addTo(myMap);
 
     /*pre-load map with one Kincade Fire marker & video*/
