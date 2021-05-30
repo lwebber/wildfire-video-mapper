@@ -3,7 +3,7 @@ Find California wildfire footage YouTube videos mapped to their latitude and lon
 
 Seven of the ten most destructive wildfires in California history have happened since 2015.
 
-Click the top left pancake menu to select wildfire footage to search.
+Click the top left hamburger menu to select wildfire footage to search.
 
 Click on a fire icon on the map to see the footage.
 
