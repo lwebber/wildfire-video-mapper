@@ -38,6 +38,7 @@
                         <option value="kincade">kincade</option>
                         <option value="kincade fire">kincade fire</option>
                         <option value="kincade fire footage">kincade fire footage</option>
+                        <option value="lightning complex fire footage">lightning complex fire footage</option>
                         <option value="tubbs fire">tubbs fire</option>
                         <option value="tubbs fire footage">tubbs fire footage</option>
                         <option value="paradise fire">paradise fire</option>
@@ -63,9 +64,9 @@
         <p id="js-error-message" class="error-message"></p>
     </nav>
 
-    <main id="map-container">
+    <div id="map-container">
         <div id="mapid"></div>
-    </main>
+    </div>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -79,12 +80,12 @@
     <script>
         function openNav() {
             document.getElementById("sideNavigation").style.width = "300px";
-            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("map-container").style.marginLeft = "250px";
         }
 
         function closeNav() {
             document.getElementById("sideNavigation").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("map-container").style.marginLeft = "0";
         }
     </script>
 </body>

@@ -12,7 +12,6 @@ function start() {
     paintMap();
     watchForm();
     $('#myBar').hide();
-    console.log('start ran');
 }
 
 function paintMap() {
@@ -32,7 +31,6 @@ function paintMap() {
 
     let firemarker = L.marker([38.792458, -122.780053], { icon: fireIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/Nz0YQOIktk4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
     firemarker.addTo(myMap);
-    console.log('paint map ran');
 }
 
 function watchForm() {
@@ -49,7 +47,6 @@ function watchForm() {
         $('#myBar').text('Loading....');
         updateProgress();
     });
-    console.log('watch form ran');
 }
 
 function updateProgress() {
@@ -66,7 +63,6 @@ function updateProgress() {
             elem.style.width = width + '%';
         }
     }
-    console.log('update progress ran');
 }
 
 async function fetchVideos(search_terms, max = 3) {
@@ -88,12 +84,11 @@ async function fetchVideos(search_terms, max = 3) {
         resp = await fetch(url);
         let resp_json = await resp.json();
         /*take the response and use it to build an array of video objects*/
-        //buildVideoArray(resp_json);
+        buildVideoArray(resp_json);
         resp_json.items.map(console.dir);
     } catch {
         console.error(resp.statusText);
     }
-    console.log('fetch videos ran');
 }
 
 function formatQueryParams(params) {
@@ -119,7 +114,6 @@ async function buildVideoArray(resp_json) {
     await addEmbedHtml(videos);
     /*display and map the videos*/
     displayVideos(videos);
-    console.log('build video array ran');
 }
 
 async function fetchLat(video_id) {
@@ -140,7 +134,26 @@ async function fetchLat(video_id) {
     } catch (err) {
         $('#js-error-message').text(`Something went wrong: ${err.message}`);
     }
-    console.log('fetch lat ran');
+}
+
+async function fetchLong(video_id) {
+    const params = {
+        part: "recordingDetails",
+        key: apiKey,
+        id: video_id
+    }
+
+    const queryString = formatQueryParams(params);
+    const url = videoURL + '?' + queryString;
+
+    try {
+        const resp = await fetch(url);
+        let resp_json = await resp.json();
+        let long = await resp_json.items[0].recordingDetails.location.longitude;
+        return long;
+    } catch (err) {
+        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    }
 }
 
 async function fetchLocation(video_id) {
@@ -160,7 +173,6 @@ async function fetchLocation(video_id) {
     } catch (err) {
         $('#js-error-message').text(`Something went wrong: ${err.message}`);
     }
-    console.log('fetch location ran');
 }
 
 async function fetchEmbedHtml(video_id) {
@@ -180,28 +192,24 @@ async function fetchEmbedHtml(video_id) {
     } catch (err) {
         $('#js-error-message').text(`Something went wrong: ${err.message}`);
     }
-    console.log('fetch embed html ran');
 }
 
 async function addLat(videos) {
     for (let i = 0; i < videos.length; i++) {
         videos[i].lat = await fetchLat(videos[i].videoId);
     }
-    console.log('add lat ran');
 }
 
 async function addLong(videos) {
     for (let i = 0; i < videos.length; i++) {
         videos[i].long = await fetchLong(videos[i].videoId);
     }
-    console.log('add long ran');
 }
 
 async function addEmbedHtml(videos) {
     for (let i = 0; i < videos.length; i++) {
         videos[i].embed_html = await fetchEmbedHtml(videos[i].videoId);
     }
-    console.log('addembedhtml ran');
 }
 
 function displayVideos(videos) {
@@ -210,7 +218,6 @@ function displayVideos(videos) {
         $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
     }
     mapVideos(videos);
-    console.log('display videos ran');
 }
 
 function mapVideos(videos) {
@@ -224,7 +231,6 @@ function mapVideos(videos) {
         firemarker.addTo(myMap);
     }
     myMap.setZoom(9);
-    console.log('map videos ran');
 }
 
 $(start);
