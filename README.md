@@ -2,8 +2,6 @@
 
 Live map [here](https://lwebber.github.io/wildfire-video-mapper/)
 
-Live map <a href="https://lwebber.github.io/wildfire-video-mapper/" target="_blank">Here</a>
-
 Find California wildfire footage YouTube videos mapped to their latitude and longitude.
 
 - Click the top left hamburger menu to select wildfire footage to search.
