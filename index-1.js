@@ -85,7 +85,7 @@ async function fetchVideos(search_terms, max = 3) {
         let resp_json = await resp.json();
         /*take the response and use it to build an array of video objects*/
         buildVideoArray(resp_json);
-        resp_json.items.map(console.dir);
+        //resp_json.items.map(console.dir);
     } catch {
         console.error(resp.statusText);
     }
@@ -94,7 +94,6 @@ async function fetchVideos(search_terms, max = 3) {
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    console.log('format query params ran');
         return queryItems.join('&');
 }
 
@@ -215,7 +214,8 @@ async function addEmbedHtml(videos) {
 function displayVideos(videos) {
     $('#results-list').empty();
     for (let i = 0; i < videos.length; i++) {
-        $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
+        $('#results-list').append(`<li>${videos[i].videoId}<li>`);
+        console.log(`${videos[i].videoId}`);
     }
     mapVideos(videos);
 }
@@ -227,7 +227,9 @@ function mapVideos(videos) {
     for (let i = 0; i < videos.length; i++) {
         let lat = videos[i].lat;
         let long = videos[i].long;
-        let firemarker = L.marker([lat, long], { icon: myIcon }).bindPopup(`${videos[i].embed_html}`);
+        let firemarker = L.marker([lat, long], { icon: myIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/${videos[i].videoId}\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
+
+        /*`${videos[i].embed_html}`*/
         firemarker.addTo(myMap);
     }
     myMap.setZoom(9);
