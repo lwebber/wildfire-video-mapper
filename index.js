@@ -2,7 +2,6 @@
 
 const myMap = L.map('mapid').setView([38.792458, -122.780053], 7);
 const apiKey = 'AIzaSyDO1s4feAKvoD59SHzKZk30gLG6mRZYVT4';
-const access_token = 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJja29tMXF6aXowM2hkMnVwbDM3ano1MWowIn0.pgOwNUc7CwQNmO6eoi4PcQ';
 const searchURL = 'https://www.googleapis.com/youtube/v3/search';
 const videoURL = 'https://www.googleapis.com/youtube/v3/videos';
 let videos = [];
@@ -16,23 +15,21 @@ function start() {
 }
 
 function paintMap() {
-    
-    L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/1/1/0?access_token=${access_token}`, {
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: `${access_token}`
+    accessToken: 'pk.eyJ1Ijoid3dlYmJ5MSIsImEiOiJja29tMXF6aXowM2hkMnVwbDM3ano1MWowIn0.pgOwNUc7CwQNmO6eoi4PcQ'
 }).addTo(myMap);
-    
 
     /*pre-load map with one Kincade Fire marker & video*/
     let fireIcon = L.icon({
         iconUrl: 'fireicon.ico',
     });
 
-    let firemarker = L.marker([38.792458, -122.780053], { icon: fireIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/Nz0YQOIktk4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
+    let firemarker = L.marker([38.792458, -122.780053], { icon: fireIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/Nz0YQOIktk4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
     firemarker.addTo(myMap);
 }
 
@@ -82,20 +79,22 @@ async function fetchVideos(search_terms, max = 3) {
     }
     const queryString = formatQueryParams(params)
     const url = searchURL + '?' + queryString;
+    let resp;
     try {
-        const resp = await fetch(url);
+        resp = await fetch(url);
         let resp_json = await resp.json();
         /*take the response and use it to build an array of video objects*/
         buildVideoArray(resp_json);
+        //resp_json.items.map(console.dir);
     } catch {
-        throw new Error(response.statusText);
+        console.error(resp.statusText);
     }
 }
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    return queryItems.join('&');
+        return queryItems.join('&');
 }
 
 async function buildVideoArray(resp_json) {
@@ -134,7 +133,6 @@ async function fetchLat(video_id) {
     } catch (err) {
         $('#js-error-message').text(`Something went wrong: ${err.message}`);
     }
-
 }
 
 async function fetchLong(video_id) {
@@ -152,6 +150,25 @@ async function fetchLong(video_id) {
         let resp_json = await resp.json();
         let long = await resp_json.items[0].recordingDetails.location.longitude;
         return long;
+    } catch (err) {
+        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    }
+}
+
+async function fetchLocation(video_id) {
+    const params = {
+        part: "recordingDetails,player",
+        key: apiKey,
+        id: video_id
+    }
+
+    const queryString = formatQueryParams(params);
+    const url = videoURL + '?' + queryString;
+
+    try {
+        const resp = await fetch(url);
+        let resp_json = await resp.json();
+        return await resp_json.items[0].recordingDetails.location;
     } catch (err) {
         $('#js-error-message').text(`Something went wrong: ${err.message}`);
     }
@@ -197,7 +214,8 @@ async function addEmbedHtml(videos) {
 function displayVideos(videos) {
     $('#results-list').empty();
     for (let i = 0; i < videos.length; i++) {
-        $('#results-list').append(`<li>${videos[i].embed_html}<li>`);
+        $('#results-list').append(`<li>${videos[i].videoId}<li>`);
+        console.log(`${videos[i].videoId}`);
     }
     mapVideos(videos);
 }
@@ -209,7 +227,9 @@ function mapVideos(videos) {
     for (let i = 0; i < videos.length; i++) {
         let lat = videos[i].lat;
         let long = videos[i].long;
-        let firemarker = L.marker([lat, long], { icon: myIcon }).bindPopup(`${videos[i].embed_html}`);
+        let firemarker = L.marker([lat, long], { icon: myIcon }).bindPopup(`<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/${videos[i].videoId}\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>`);
+
+        /*`${videos[i].embed_html}`*/
         firemarker.addTo(myMap);
     }
     myMap.setZoom(9);
